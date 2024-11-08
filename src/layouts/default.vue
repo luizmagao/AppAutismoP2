@@ -1,7 +1,11 @@
 <template>
-  <v-app>
+  <v-app theme="light">
     <v-main>
-      <router-view />
+      <v-app-bar>AppAutismo P2</v-app-bar>
+      <v-navigation-drawer> Drawer </v-navigation-drawer>
+      <v-container>
+        <router-view />
+      </v-container>
     </v-main>
 
     <AppFooter />
@@ -9,5 +13,5 @@
 </template>
 
 <script setup>
-  //
+//
 </script>

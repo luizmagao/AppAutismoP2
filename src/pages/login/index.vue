@@ -1,21 +1,21 @@
 <template>
-  <v-sheet class="mx-auto" width="300">
-    <v-form ref="form">
-      <v-text-field label="Name" required></v-text-field>
+  <h1>login</h1>
 
-      <v-select label="Item" required></v-select>
-
-      <v-checkbox label="Do you agree?" required></v-checkbox>
-
-      <div class="d-flex flex-column">
-        <v-btn class="mt-4" color="success" block> Validate </v-btn>
-
-        <v-btn class="mt-4" color="error" block> Reset Form </v-btn>
-
-        <v-btn class="mt-4" color="warning" block> Reset Validation </v-btn>
-      </div>
-    </v-form>
-  </v-sheet>
+  <v-row>
+    <v-col cols="12" md="4">
+      <v-text-field label="E-mail" required></v-text-field>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="12" md="4">
+      <v-text-field label="Senha" required></v-text-field>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col>
+      <v-btn> Entrar no sistema </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup></script>

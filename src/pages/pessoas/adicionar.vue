@@ -1,6 +1,8 @@
 <template>
   <h1>Adicionando pessoa</h1>
 
+  {{ primeiro_nome }} - {{ ultimo_nome }} -
+  {{ bairro_escolhido }}
   <v-form>
     <v-row>
       <v-col cols="12" md="6">

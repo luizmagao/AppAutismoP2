@@ -1,6 +1,8 @@
 <template>
   <h1>Lista de pessoas</h1>
 
+  <v-btn to="/pessoas/adicionar">Adicionar pessoa</v-btn>
+
   <v-col cols="12" md="12" class="d-flex justify-center">
     <v-card
       prepend-icon="$vuetify"

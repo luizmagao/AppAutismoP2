@@ -1,9 +1,6 @@
 <template>
   <h1>Adicionando pessoa</h1>
-
-  {{ primeiro_nome }} - {{ ultimo_nome }} -
-  {{ bairro_escolhido }}
-  <v-form>
+  <v-form @submit.prevent="add">
     <v-row>
       <v-col cols="12" md="6">
         <v-text-field
@@ -29,6 +26,7 @@
         <v-btn
           prepend-icon="$vuetify"
           color="red"
+          type="submit"
           :disabled="!primeiro_nome || !ultimo_nome || !bairro_escolhido"
         >
           Adicionar Pessoa
@@ -40,6 +38,7 @@
 
 <script setup>
 import { ref } from "vue";
+import db from "@/composables/db";
 
 const primeiro_nome = ref();
 const ultimo_nome = ref();
@@ -52,6 +51,26 @@ const bairros = ref([
   "Vila dos cornos",
   "São Benedito",
 ]);
+
+function add() {
+  try {
+    db.collection("pessoas").add({
+      first_name: primeiro_nome.value,
+      last_name: ultimo_nome.value,
+      neighborhood: bairro_escolhido.value,
+    });
+
+    primeiro_nome.value = "";
+    ultimo_nome.value = "";
+    bairro_escolhido = "";
+
+    console.log("Dados salvo com sucesso!");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+onMounted(() => {});
 </script>
 
 <style scoped></style>

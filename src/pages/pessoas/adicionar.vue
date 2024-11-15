@@ -38,7 +38,8 @@
 
 <script setup>
 import { ref } from "vue";
-import db from "@/composables/db";
+// import db from "@/composables/db";
+import { Pessoa } from "@/composables/Pessoa";
 
 const primeiro_nome = ref();
 const ultimo_nome = ref();
@@ -54,15 +55,15 @@ const bairros = ref([
 
 function add() {
   try {
-    db.collection("pessoas").add({
-      first_name: primeiro_nome.value,
-      last_name: ultimo_nome.value,
-      neighborhood: bairro_escolhido.value,
+    Pessoa.i().adicionar({
+      primeiro_nome: primeiro_nome.value,
+      ultimo_nome: ultimo_nome.value,
+      bairro_escolhido: bairro_escolhido.value,
     });
 
     primeiro_nome.value = "";
     ultimo_nome.value = "";
-    bairro_escolhido = "";
+    bairro_escolhido.value = "";
 
     console.log("Dados salvo com sucesso!");
   } catch (error) {
@@ -70,7 +71,9 @@ function add() {
   }
 }
 
-onMounted(() => {});
+onMounted(() => {
+  console.log();
+});
 </script>
 
 <style scoped></style>

@@ -1,9 +1,20 @@
 import db from "@/composables/db";
 
 
-class Pessoa {
+export class Pessoa {
 
-  adicionar() {}
+  constructor() {
+  }
+
+  static i() {
+    return new this
+  }
+
+  adicionar(dados) {
+    db.collection("pessoas").add({
+      dados
+    });
+  }
   editar(id) {}
   excluir(id) {}
   mostrarTodos() {}

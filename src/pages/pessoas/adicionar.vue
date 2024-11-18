@@ -34,12 +34,25 @@
       </v-col>
     </v-row>
   </v-form>
+
+  <div class="text-center ma-2">
+    <v-snackbar v-model="snackbar">
+      {{ text }}
+
+      <template v-slot:actions>
+        <v-btn color="pink" variant="text" @click="snackbar = false">
+          Fechar
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 // import db from "@/composables/db";
 import { Pessoa } from "@/composables/Pessoa";
+import { useRouter } from "vue-router";
 
 const primeiro_nome = ref();
 const ultimo_nome = ref();
@@ -52,10 +65,13 @@ const bairros = ref([
   "Vila dos cornos",
   "São Benedito",
 ]);
+const snackbar = ref(false);
+const text = ref();
+const router = useRouter();
 
 function add() {
   try {
-    Pessoa.i().adicionar({
+    Pessoa.instancia().adicionar({
       primeiro_nome: primeiro_nome.value,
       ultimo_nome: ultimo_nome.value,
       bairro_escolhido: bairro_escolhido.value,
@@ -66,14 +82,18 @@ function add() {
     bairro_escolhido.value = "";
 
     console.log("Dados salvo com sucesso!");
+
+    snackbar.value = true;
+    text.value = "Dados salvo";
+    setTimeout(() => {
+      router.push("/pessoas");
+    }, 1000);
   } catch (error) {
     console.log(error);
   }
 }
 
-onMounted(() => {
-  console.log();
-});
+onMounted(() => {});
 </script>
 
 <style scoped></style>

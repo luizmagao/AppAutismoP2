@@ -28,6 +28,7 @@
           prepend-icon="$vuetify"
           color="red"
           :disabled="!primeiro_nome || !ultimo_nome || !bairro_escolhido"
+          @click="adicionarPessoaSupabase"
         >
           Adicionar Pessoa
         </v-btn>
@@ -38,7 +39,10 @@
 
 <script setup>
 import { ref } from "vue";
+import { create } from "@/composables/pessoas";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const primeiro_nome = ref();
 const ultimo_nome = ref();
 const bairro_escolhido = ref();
@@ -50,6 +54,15 @@ const bairros = ref([
   "Vila dos cornos",
   "São Benedito",
 ]);
+
+const adicionarPessoaSupabase = async () => {
+  const payload = await create({
+    nome: primeiro_nome.value,
+    sobrenome: ultimo_nome.value,
+    bairro: bairro_escolhido.value,
+  });
+  router.push("/pessoas");
+};
 </script>
 
 <style scoped></style>
